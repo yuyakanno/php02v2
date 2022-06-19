@@ -1,0 +1,14 @@
+table{
+    background-color: azure;
+    margin-bottom: 30px;
+}
+
+th{
+    background-color: rgb(186, 186, 19);
+}
+td{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top:5px ;
+    padding-bottom:5px ;
+}
