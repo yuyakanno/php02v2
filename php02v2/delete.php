@@ -11,14 +11,19 @@
         $id = (int)$_GET["id"];
 
         //Password:MAMP='root',XAMPP=''
-        $dbh = new PDO('mysql:dbname=yuyakanno_yk_db;charset=utf8;host=mysql57.yuyakanno.sakura.ne.jp' , 'yuyakanno', '*******');
-        // $dbh = new PDO('mysql:dbname=gs_bm_table;charset=utf8;host=localhost','root','');
+        $dbh = new PDO('mysql:dbname=yuyakanno_yk_db;charset=utf8;host=mysql57.yuyakanno.sakura.ne.jp' , 'yuyakanno', '*****');
+        // $dbh = new PDO('mysql:dbname=yk_db;charset=utf8;host=localhost','root','');
         $sql = 'DELETE FROM gs_bm_table WHERE id = ?';
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(1, "id", PDO::PARAM_INT);
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(1, $id, PDO::PARAM_INT);
         $stmt->execute();
         $dbh = null;
-        echo 'ID: ' . h($id) . 'の削除が完了しました';
+
+        if($stmt==false){
+            sql_error($stmt);
+          }else{
+            redirect("list.php");
+          }
 
       } catch (PDOException $e) {
         exit('DBConnection Error:'.$e->getMessage());

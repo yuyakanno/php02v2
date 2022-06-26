@@ -25,8 +25,8 @@
 require_once("funcs.php");
 
 try {
-    $dbh = new PDO('mysql:dbname=yuyakanno_yk_db;charset=utf8;host=mysql57.yuyakanno.sakura.ne.jp' , 'yuyakanno', '*******');
-    // $dbh = new PDO('mysql:dbname=gs_bm_table;charset=utf8;host=localhost','root','');
+    $dbh = new PDO('mysql:dbname=yuyakanno_yk_db;charset=utf8;host=mysql57.yuyakanno.sakura.ne.jp' , 'yuyakanno', '*****');
+    // $dbh = new PDO('mysql:dbname=yk_db;charset=utf8;host=localhost','root','');
     $sql = "SELECT * FROM gs_bm_table";
     $stmt = $dbh-> query($sql);
     $res = $stmt-> fetchAll(PDO::FETCH_ASSOC);
@@ -34,7 +34,7 @@ try {
     // テーブル表示の記述
     echo "<table border =1>" . PHP_EOL;
     echo "<tr>" . PHP_EOL;
-    echo "<th>書籍名</th><th>登録日時</th><th>DETAIL</th><th>DEL</th>" . PHP_EOL;
+    echo "<th>書籍名</th><th>登録日時</th><th>書評</th><th>EDIT</th><th>DELETE</th>" . PHP_EOL;
     echo "</tr>" . PHP_EOL;
 
     //書籍名と登録日時のデータ繰り返し表示
@@ -43,6 +43,7 @@ try {
         echo "<td>" . h($row["name"]) . "</td>" . PHP_EOL;
         echo "<td>" . h($row["date"]) . "</td>" . PHP_EOL;
         echo "<td>" . '<a href="detail.php?id=' . $row["id"] . '">詳細</a>' . "</td>" . PHP_EOL;
+        echo "<td>" . '<a href="edit.php?id=' . $row["id"] . '">変更</a>' . "</td>" . PHP_EOL;
         echo "<td>" . '<a href="delete.php?id=' . $row["id"] . '">削除</a>' . "</td>" . PHP_EOL;
         echo "</tr>" . PHP_EOL;
     }

@@ -11,15 +11,15 @@ $comment = $_POST["comment"];
 //2. DB接続します
 try {
   //Password:MAMP='root',XAMPP=''
-  // $pdo = new PDO('mysql:dbname=gs_bm_table;charset=utf8;host=localhost','root','');
-  $pdo = new PDO('mysql:dbname=yuyakanno_yk_db;charset=utf8;host=mysql57.yuyakanno.sakura.ne.jp' , 'yuyakanno', '********');
+  // $pdo = new PDO('mysql:dbname=yk_db;charset=utf8;host=localhost','root','');
+  $pdo = new PDO('mysql:dbname=yuyakanno_yk_db;charset=utf8;host=mysql57.yuyakanno.sakura.ne.jp' , 'yuyakanno', '*****');
 } catch (PDOException $e) {
   exit('DBConnection Error:'.$e->getMessage());
 }
 
 
 //３．データ登録SQL作成
-$stmt = $pdo->prepare("insert into gs_bm_table(name, link, comment, date) values(:name, :link, :comment, sysdate())");
+$stmt = $pdo->prepare("INSERT INTO gs_bm_table(name, link, comment, date) values(:name, :link, :comment, sysdate())");
 $stmt -> bindValue(':name', $name, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
 $stmt -> bindValue(':link', $link, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
 $stmt -> bindValue(':comment', $comment, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
@@ -31,8 +31,7 @@ if($status==false){
   $error = $stmt->errorInfo();
   exit("SQL_ERROR:".$error[2]);
 }else{
-  //５．list.phpへリダイレクト
-  header("Location: index_kadai.php");
+  header("Location: list.php");
   exit();
 
 }
