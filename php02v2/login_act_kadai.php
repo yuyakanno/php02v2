@@ -7,8 +7,7 @@ $lpw = $_POST["lpw"];
 
 //1.  DB接続します
 include("funcs.php");
-$pdo = new PDO('mysql:dbname=yk_db;charset=utf8;host=localhost','root','');
-// $pdo = new PDO('mysql:dbname=yuyakanno_yk_db;charset=utf8;host=mysql57.yuyakanno.sakura.ne.jp' , 'yuyakanno', '*****');
+$pdo = db_conn();
 
 
 //2. データ登録SQL作成

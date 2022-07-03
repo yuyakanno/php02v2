@@ -7,6 +7,18 @@ function h($str)
     return htmlspecialchars($str, ENT_QUOTES);
 }
 
+function db_conn(){
+  try {
+      $db_name = "yk_db";    //データベース名 yuyakanno_yk_db
+      $db_id   = "root";      //アカウント名 yuyakanno
+      $db_pw   = "";      //パスワード：XAMPPはパスワード無しに修正してください。*******
+      $db_host = "localhost"; //DBホスト mysql57.yuyakanno.sakura.ne.jp 
+      return new PDO('mysql:dbname='.$db_name.';charset=utf8;host='.$db_host, $db_id, $db_pw);
+  } catch (PDOException $e) {
+    exit('DB Connection Error:'.$e->getMessage());
+  }
+}
+
 //SQLエラー関数：sql_error($stmt)
 function sql_error($stmt) {
     $error = $stmt->errorInfo();
@@ -29,6 +41,4 @@ function sschk(){
       $_SESSION["chk_ssid"] = session_id();
     }
   }
-  
-
 

@@ -1,6 +1,6 @@
 <?php 
-
-    require_once("funcs.php");
+include("funcs.php");
+sschk();
 
     // DBに接続する
     if (empty($_GET["id"])) {
@@ -11,8 +11,7 @@
         $id = (int)$_GET["id"];
 
         //Password:MAMP='root',XAMPP=''
-        // $dbh = new PDO('mysql:dbname=yuyakanno_yk_db;charset=utf8;host=mysql57.yuyakanno.sakura.ne.jp' , 'yuyakanno', '*****');
-        $dbh = new PDO('mysql:dbname=yk_db;charset=utf8;host=localhost','root','');
+        $dbh = db_conn();
         $sql = 'DELETE FROM gs_bm_table WHERE id = ?';
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(1, $id, PDO::PARAM_INT);

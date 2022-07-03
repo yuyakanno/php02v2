@@ -11,13 +11,7 @@ $lpw = password_hash($hpw, PASSWORD_DEFAULT);
 
 
 //2. DB接続します
-try {
-  //Password:MAMP='root',XAMPP=''
-  $pdo = new PDO('mysql:dbname=yk_db;charset=utf8;host=localhost','root','');
-  // $pdo = new PDO('mysql:dbname=yuyakanno_yk_db;charset=utf8;host=mysql57.yuyakanno.sakura.ne.jp' , 'yuyakanno', '*****');
-} catch (PDOException $e) {
-  exit('DBConnection Error:'.$e->getMessage());
-}
+$pdo = db_conn();
 
 
 //３．データ登録SQL作成

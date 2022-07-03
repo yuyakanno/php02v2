@@ -24,12 +24,10 @@
 <?php
 
 include("funcs.php");
-
 sschk();
 
 try {
-    // $dbh = new PDO('mysql:dbname=yuyakanno_yk_db;charset=utf8;host=mysql57.yuyakanno.sakura.ne.jp' , 'yuyakanno', '*****');
-    $dbh = new PDO('mysql:dbname=yk_db;charset=utf8;host=localhost','root','');
+    $dbh = db_conn();
     $sql = "SELECT * FROM gs_bm_table";
     $stmt = $dbh-> query($sql);
     $res = $stmt-> fetchAll(PDO::FETCH_ASSOC);
