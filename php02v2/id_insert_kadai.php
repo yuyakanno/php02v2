@@ -3,8 +3,10 @@
 //$name = filter_input( INPUT_GET, ","name" ); //こういうのもあるよ
 //$email = filter_input( INPUT_POST, "email" ); //こういうのもあるよ
 $name = $_POST["name"];
-$link = $_POST["link"];
-$comment = $_POST["comment"];
+$lid = $_POST["lid"];
+$hpw = $_POST["lpw"];
+$lpw = password_hash($hpw, PASSWORD_DEFAULT);
+
 
 
 
@@ -19,10 +21,10 @@ try {
 
 
 //３．データ登録SQL作成
-$stmt = $pdo->prepare("INSERT INTO gs_bm_table(name, link, comment, date) values(:name, :link, :comment, sysdate())");
+$stmt = $pdo->prepare("INSERT INTO gs_user_table(name, lid, lpw) values(:name, :lid, :lpw)");
 $stmt -> bindValue(':name', $name, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt -> bindValue(':link', $link, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt -> bindValue(':comment', $comment, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt -> bindValue(':lid', $lid, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt -> bindValue(':lpw', $lpw, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
 $status = $stmt->execute();
 
 //４．データ登録処理後
@@ -31,7 +33,7 @@ if($status==false){
   $error = $stmt->errorInfo();
   exit("SQL_ERROR:".$error[2]);
 }else{
-  header("Location: list.php");
+  header("Location: login_kadai.php");
   exit();
 
 }

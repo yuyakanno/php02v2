@@ -7,8 +7,8 @@ if (empty($_GET["id"])) {
 }
 try {
     $id = (int)$_GET["id"];
-    // $dbh = new PDO('mysql:dbname=yk_db;charset=utf8;host=localhost','root','');
-    $dbh = new PDO('mysql:dbname=yuyakanno_yk_db;charset=utf8;host=mysql57.yuyakanno.sakura.ne.jp' , 'yuyakanno', '*****');
+    $dbh = new PDO('mysql:dbname=yk_db;charset=utf8;host=localhost','root','');
+    // $dbh = new PDO('mysql:dbname=yuyakanno_yk_db;charset=utf8;host=mysql57.yuyakanno.sakura.ne.jp' , 'yuyakanno', '*****');
 
     $sql = "SELECT * FROM gs_bm_table WHERE id = ?";
     $stmt = $dbh-> prepare($sql);

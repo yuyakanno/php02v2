@@ -13,8 +13,8 @@
     $id = (int)$_GET["id"];
 
     try{
-        $dbh = new PDO('mysql:dbname=yuyakanno_yk_db;charset=utf8;host=mysql57.yuyakanno.sakura.ne.jp' , 'yuyakanno', '*****');
-        // $dbh = new PDO('mysql:dbname=yk_db;charset=utf8;host=localhost','root','');
+        // $dbh = new PDO('mysql:dbname=yuyakanno_yk_db;charset=utf8;host=mysql57.yuyakanno.sakura.ne.jp' , 'yuyakanno', '*****');
+        $dbh = new PDO('mysql:dbname=yk_db;charset=utf8;host=localhost','root','');
         $sql = "UPDATE gs_bm_table SET name = ?, link = ?, comment = ? WHERE id = ?";
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(1, $name, PDO::PARAM_STR);
